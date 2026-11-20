@@ -299,3 +299,24 @@ longBreakMode.addEventListener("click", function() {
 
 focusMode.classList.add("active");
 updateTimerDisplay();
+const menuToggle = document.querySelector("#menu-toggle");
+const navLinks = document.querySelector(".nav-links");
+
+menuToggle.addEventListener("click", function() {
+    navLinks.classList.toggle("show");
+
+    const isOpen = navLinks.classList.contains("show");
+
+    menuToggle.setAttribute("aria-expanded", isOpen);
+    menuToggle.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
+    menuToggle.textContent = isOpen ? "✕" : "☰";
+});
+
+navLinks.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", function() {
+        navLinks.classList.remove("show");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation");
+        menuToggle.textContent = "☰";
+    });
+});

@@ -16,7 +16,9 @@ body {
     color: white;
     font-family: Arial, sans-serif;
     line-height: 1.6;
+    scroll-behavior: smooth;
 }
+
 
 
 /* NAVIGATION */
@@ -52,6 +54,16 @@ nav a {
 
 nav a:hover {
     color: #bd65ff;
+}
+#menu-toggle {
+    display: none;
+    background: transparent;
+    border: 1px solid #bd65ff;
+    color: white;
+    font-size: 24px;
+    padding: 5px 12px;
+    border-radius: 6px;
+    cursor: pointer;
 }
 
 
@@ -323,10 +335,30 @@ footer h2 {
 @media (max-width: 700px) {
 
     nav {
-        flex-direction: column;
-        gap: 15px;
-        padding: 18px;
-    }
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 18px;
+}
+
+#menu-toggle {
+    display: block;
+}
+
+.nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    gap: 18px;
+    text-align: center;
+}
+
+.nav-links.show {
+    display: flex;
+    background-color: #11111d;
+    padding: 20px 0;
+    border-top: 1px solid #bd65ff;
+}
 
     nav div {
         justify-content: center;

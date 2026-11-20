@@ -1,22 +1,24 @@
 
-/* =================================
+/* =========================
    NOVA CONTACT FORM
-================================= */
+========================= */
 
 const contactForm = document.querySelector("#contact-form");
 
-contactForm.addEventListener("submit", function(event) {
-    event.preventDefault();
+if (contactForm) {
+    contactForm.addEventListener("submit", function(event) {
+        event.preventDefault();
 
-    alert("Thanks for contacting NOVA!");
+        alert("Thanks for contacting NOVA!");
 
-    contactForm.reset();
-});
+        contactForm.reset();
+    });
+}
 
 
-/* =================================
+/* =========================
    NOVA QUICK PLANNER
-================================= */
+========================= */
 
 const taskForm = document.querySelector("#task-form");
 const taskInput = document.querySelector("#task-input");
@@ -24,164 +26,151 @@ const taskPriority = document.querySelector("#task-priority");
 const taskList = document.querySelector("#task-list");
 const emptyMessage = document.querySelector("#empty-message");
 const taskCounter = document.querySelector("#task-counter");
-const clearTasksButton = document.querySelector("#clear-tasks");
+const clearTasks = document.querySelector("#clear-tasks");
 
 let tasks = JSON.parse(localStorage.getItem("novaTasks")) || [];
-
 
 function saveTasks() {
     localStorage.setItem("novaTasks", JSON.stringify(tasks));
 }
 
+function renderTasks() {
+    if (!taskList) return;
 
-function updateTaskCounter() {
-    const totalTasks = tasks.length;
-    const completedTasks = tasks.filter(task => task.completed).length;
+    taskList.innerHTML = "";
 
-    taskCounter.textContent =
-        totalTasks + " tasks | " + completedTasks + " completed";
-}
+    if (emptyMessage) {
+        emptyMessage.style.display = tasks.length === 0 ? "block" : "none";
+    }
 
-
-function displayTasks() {
-    taskList.textContent = "";
-
-    emptyMessage.style.display =
-        tasks.length === 0 ? "block" : "none";
-
-    tasks.forEach(function(task, index) {
-        const taskItem = document.createElement("li");
-        const taskName = document.createElement("span");
-        const priorityLabel = document.createElement("small");
-        const completeButton = document.createElement("button");
-        const deleteButton = document.createElement("button");
-
-        taskName.textContent = task.name;
-        priorityLabel.textContent = "Priority: " + task.priority;
+    tasks.forEach(function(task) {
+        const li = document.createElement("li");
 
         if (task.completed) {
-            taskItem.classList.add("completed");
+            li.classList.add("completed");
         }
 
-        completeButton.textContent =
-            task.completed ? "Completed" : "Complete";
+        const taskName = document.createElement("span");
+        taskName.textContent = task.name;
 
-        completeButton.disabled = task.completed;
+        const priority = document.createElement("small");
+        priority.textContent = task.priority;
 
-        deleteButton.textContent = "Delete";
+        const actions = document.createElement("div");
+
+        const completeButton = document.createElement("button");
+        completeButton.type = "button";
+        completeButton.textContent = task.completed ? "Undo" : "Complete";
 
         completeButton.addEventListener("click", function() {
-            tasks[index].completed = true;
-
+            task.completed = !task.completed;
             saveTasks();
-            displayTasks();
+            renderTasks();
         });
+
+        const deleteButton = document.createElement("button");
+        deleteButton.type = "button";
+        deleteButton.textContent = "Delete";
 
         deleteButton.addEventListener("click", function() {
-            tasks.splice(index, 1);
+            tasks = tasks.filter(function(item) {
+                return item.id !== task.id;
+            });
 
             saveTasks();
-            displayTasks();
+            renderTasks();
         });
 
-        taskItem.appendChild(taskName);
-        taskItem.appendChild(document.createElement("br"));
-        taskItem.appendChild(priorityLabel);
-        taskItem.appendChild(document.createElement("br"));
-        taskItem.appendChild(completeButton);
-        taskItem.appendChild(deleteButton);
+        actions.appendChild(completeButton);
+        actions.appendChild(deleteButton);
 
-        taskList.appendChild(taskItem);
+        li.appendChild(taskName);
+        li.appendChild(priority);
+        li.appendChild(actions);
+
+        taskList.appendChild(li);
     });
 
-    updateTaskCounter();
+    if (taskCounter) {
+        const completedTasks = tasks.filter(function(task) {
+            return task.completed;
+        }).length;
+
+        taskCounter.textContent =
+            completedTasks + " of " + tasks.length + " completed";
+    }
 }
 
+if (taskForm) {
+    taskForm.addEventListener("submit", function(event) {
+        event.preventDefault();
 
-taskForm.addEventListener("submit", function(event) {
-    event.preventDefault();
+        const name = taskInput.value.trim();
+        const priority = taskPriority.value;
 
-    const taskText = taskInput.value.trim();
+        if (!name) return;
 
-    if (taskText === "") {
-        return;
-    }
-
-    tasks.push({
-        name: taskText,
-        priority: taskPriority.value,
-        completed: false
-    });
-
-    saveTasks();
-    displayTasks();
-
-    taskForm.reset();
-});
-
-
-clearTasksButton.addEventListener("click", function() {
-    if (tasks.length === 0) {
-        return;
-    }
-
-    const confirmClear = confirm(
-        "Are you sure you want to clear all your tasks?"
-    );
-
-    if (confirmClear) {
-        tasks = [];
+        tasks.push({
+            id: Date.now() + Math.random(),
+            name: name,
+            priority: priority,
+            completed: false
+        });
 
         saveTasks();
-        displayTasks();
-    }
-});
+        renderTasks();
+
+        taskForm.reset();
+    });
+}
+
+if (clearTasks) {
+    clearTasks.addEventListener("click", function() {
+        if (tasks.length === 0) return;
+
+        const confirmed = confirm("Are you sure you want to clear all tasks?");
+
+        if (confirmed) {
+            tasks = [];
+            saveTasks();
+            renderTasks();
+        }
+    });
+}
+
+renderTasks();
 
 
-displayTasks();
-
-
-/* =================================
+/* =========================
    NOVA FOCUS TIMER
-================================= */
-
-const timerDisplay = document.querySelector("#timer-display");
-const startTimer = document.querySelector("#start-timer");
-const pauseTimer = document.querySelector("#pause-timer");
-const resetTimer = document.querySelector("#reset-timer");
-const timerStatus = document.querySelector("#timer-status");
-
-const timerNotification = document.querySelector("#timer-notification");
-const notificationMessage = document.querySelector("#notification-message");
-
-const focusDuration = document.querySelector("#focus-duration");
-const setTimerButton = document.querySelector("#set-timer");
+========================= */
 
 const timerMode = document.querySelector("#timer-mode");
+const timerDisplay = document.querySelector("#timer-display");
+const focusDuration = document.querySelector("#focus-duration");
 
 const focusMode = document.querySelector("#focus-mode");
 const shortBreakMode = document.querySelector("#short-break-mode");
 const longBreakMode = document.querySelector("#long-break-mode");
 
+const setTimer = document.querySelector("#set-timer");
+const startTimer = document.querySelector("#start-timer");
+const pauseTimer = document.querySelector("#pause-timer");
+const resetTimer = document.querySelector("#reset-timer");
 
-let selectedDuration = 25;
-
-let selectedFocusDuration = 25;
-let selectedShortBreakDuration = 5;
-let selectedLongBreakDuration = 15;
-
-let currentMode = "focus";
-
-let timeLeft = selectedDuration * 60;
+const timerStatus = document.querySelector("#timer-status");
+const timerNotification = document.querySelector("#timer-notification");
+const notificationMessage = document.querySelector("#notification-message");
 
 let timerInterval = null;
-
-
-/* =================================
-   TIMER DISPLAY
-================================= */
+let currentMode = "focus";
+let selectedDuration = 25;
+let timeLeft = selectedDuration * 60;
+let isRunning = false;
 
 function updateTimerDisplay() {
+    if (!timerDisplay) return;
+
     const minutes = Math.floor(timeLeft / 60);
     const seconds = timeLeft % 60;
 
@@ -190,16 +179,13 @@ function updateTimerDisplay() {
         String(seconds).padStart(2, "0");
 }
 
-
-/* =================================
-   NOVA TIMER ALARM
-================================= */
-
-let audioContext;
-
-
 function playTimerSound() {
-    if (!audioContext) return;
+    const AudioContext =
+        window.AudioContext || window.webkitAudioContext;
+
+    if (!AudioContext) return;
+
+    const audioContext = new AudioContext();
 
     if (audioContext.state === "suspended") {
         audioContext.resume();
@@ -212,294 +198,531 @@ function playTimerSound() {
         oscillator.connect(gain);
         gain.connect(audioContext.destination);
 
-        oscillator.frequency.value = 880;
+        oscillator.frequency.value = 800;
         oscillator.type = "sine";
 
-        const startAt = audioContext.currentTime + (i * 0.6);
+        const startTime = audioContext.currentTime + i * 0.5;
 
-        gain.gain.setValueAtTime(0.25, startAt);
-
+        gain.gain.setValueAtTime(0.2, startTime);
         gain.gain.exponentialRampToValueAtTime(
             0.001,
-            startAt + 0.4
+            startTime + 0.25
         );
 
-        oscillator.start(startAt);
-        oscillator.stop(startAt + 0.4);
+        oscillator.start(startTime);
+        oscillator.stop(startTime + 0.25);
     }
+
+    setTimeout(function() {
+        audioContext.close();
+    }, 2000);
 }
 
+function showTimerNotification(message) {
+    if (!timerNotification || !notificationMessage) return;
 
-/* =================================
-   START TIMER
-================================= */
-
-startTimer.addEventListener("click", function() {
-
-    timerNotification.classList.remove("show");
-    notificationMessage.textContent = "";
-
-    if (timerInterval !== null) return;
-
-    const AudioContextClass =
-        window.AudioContext || window.webkitAudioContext;
-
-    if (!audioContext && AudioContextClass) {
-        audioContext = new AudioContextClass();
-    }
-
-    if (audioContext && audioContext.state === "suspended") {
-        audioContext.resume();
-    }
-
-    timerStatus.textContent = "Focus session in progress.";
-
-    timerInterval = setInterval(function() {
-
-        timeLeft--;
-
-        updateTimerDisplay();
-
-        if (timeLeft <= 0) {
-
-            clearInterval(timerInterval);
-            timerInterval = null;
-
-            if (currentMode === "focus") {
-
-                timerStatus.textContent =
-                    "Focus session complete! Time for a break.";
-
-                notificationMessage.textContent =
-                    "Focus session complete! Great work. Time for a break.";
-
-            } else {
-
-                timerStatus.textContent =
-                    "Break complete! Ready to focus again?";
-
-                notificationMessage.textContent =
-                    "Break complete! You're ready to focus again.";
-
-            }
-
-            timerNotification.classList.add("show");
-
-            playTimerSound();
-        }
-
-    }, 1000);
-
-});
-
-
-/* =================================
-   PAUSE TIMER
-================================= */
-
-pauseTimer.addEventListener("click", function() {
-
-    clearInterval(timerInterval);
-
-    timerInterval = null;
-
-    timerStatus.textContent = "Session paused.";
-
-});
-
-
-/* =================================
-   RESET TIMER
-================================= */
-
-resetTimer.addEventListener("click", function() {
-
-    timerNotification.classList.remove("show");
-
-    notificationMessage.textContent = "";
-
-    clearInterval(timerInterval);
-
-    timerInterval = null;
-
-    timeLeft = selectedDuration * 60;
-
-    updateTimerDisplay();
-
-    timerStatus.textContent = "Ready when you are.";
-
-});
-
-
-/* =================================
-   CUSTOM TIMER DURATION
-================================= */
-
-setTimerButton.addEventListener("click", function() {
-
-    const chosenTime = Number(focusDuration.value);
-
-    if (
-        chosenTime < 1 ||
-        chosenTime > 120 ||
-        !Number.isInteger(chosenTime)
-    ) {
-        alert("Choose a whole number between 1 and 120.");
-        return;
-    }
-
-    clearInterval(timerInterval);
-
-    timerInterval = null;
-
-    if (currentMode === "focus") {
-
-        selectedFocusDuration = chosenTime;
-
-    } else if (currentMode === "short-break") {
-
-        selectedShortBreakDuration = chosenTime;
-
-    } else if (currentMode === "long-break") {
-
-        selectedLongBreakDuration = chosenTime;
-
-    }
-
-    switchTimerMode(
-        currentMode,
-        chosenTime,
-        timerMode.textContent
-    );
-
-    updateTimerDisplay();
-
-    timerStatus.textContent = "Your focus time has been set.";
-
-});
-
-
-/* =================================
-   SWITCH TIMER MODES
-================================= */
+    notificationMessage.textContent = message;
+    timerNotification.classList.add("show");
+}
 
 function switchTimerMode(mode, duration, title) {
+    if (timerNotification) {
+        timerNotification.classList.remove("show");
+    }
 
-    timerNotification.classList.remove("show");
-
-    notificationMessage.textContent = "";
+    if (notificationMessage) {
+        notificationMessage.textContent = "";
+    }
 
     clearInterval(timerInterval);
-
     timerInterval = null;
+    isRunning = false;
 
     currentMode = mode;
-
     selectedDuration = duration;
-
     timeLeft = duration * 60;
 
-    timerMode.textContent = title;
+    if (timerMode) {
+        timerMode.textContent = title;
+    }
 
-    focusDuration.value = duration;
+    if (focusDuration) {
+        focusDuration.value = duration;
+    }
 
-    timerStatus.textContent = "Ready when you are.";
+    if (timerStatus) {
+        timerStatus.textContent = "Ready when you are.";
+    }
 
-    document.querySelectorAll(".timer-modes button").forEach(button => {
+    document.querySelectorAll(".timer-modes button").forEach(function(button) {
         button.classList.remove("active");
     });
 
-    document.querySelector("#" + mode + "-mode").classList.add("active");
+    const activeButton = {
+        focus: focusMode,
+        short: shortBreakMode,
+        long: longBreakMode
+    }[mode];
+
+    if (activeButton) {
+        activeButton.classList.add("active");
+    }
 
     updateTimerDisplay();
-
 }
 
+if (focusMode) {
+    focusMode.addEventListener("click", function() {
+        switchTimerMode("focus", 25, "Focus Session");
+    });
+}
 
-/* =================================
-   TIMER MODE BUTTONS
-================================= */
+if (shortBreakMode) {
+    shortBreakMode.addEventListener("click", function() {
+        switchTimerMode("short", 5, "Short Break");
+    });
+}
 
-focusMode.addEventListener("click", function() {
+if (longBreakMode) {
+    longBreakMode.addEventListener("click", function() {
+        switchTimerMode("long", 15, "Long Break");
+    });
+}
 
-    switchTimerMode(
-        "focus",
-        selectedFocusDuration,
-        "Focus Session"
-    );
+if (setTimer) {
+    setTimer.addEventListener("click", function() {
+        const duration = Number(focusDuration.value);
 
-});
+        if (!Number.isInteger(duration) || duration < 1 || duration > 120) {
+            alert("Please enter a duration between 1 and 120 minutes.");
+            return;
+        }
 
+        switchTimerMode(currentMode, duration, timerMode.textContent);
+    });
+}
 
-shortBreakMode.addEventListener("click", function() {
+if (startTimer) {
+    startTimer.addEventListener("click", function() {
+        if (isRunning || timeLeft <= 0) return;
 
-    switchTimerMode(
-        "short-break",
-        selectedShortBreakDuration,
-        "Short Break"
-    );
+        if (timerNotification) {
+            timerNotification.classList.remove("show");
+        }
 
-});
+        if (notificationMessage) {
+            notificationMessage.textContent = "";
+        }
 
+        isRunning = true;
 
-longBreakMode.addEventListener("click", function() {
+        if (timerStatus) {
+            timerStatus.textContent = "Your session is in progress.";
+        }
 
-    switchTimerMode(
-        "long-break",
-        selectedLongBreakDuration,
-        "Long Break"
-    );
+        timerInterval = setInterval(function() {
+            timeLeft--;
 
-});
+            updateTimerDisplay();
 
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+                isRunning = false;
 
-/* =================================
-   INITIAL TIMER SETUP
-================================= */
+                if (timerStatus) {
+                    timerStatus.textContent = "Session completed!";
+                }
 
-focusMode.classList.add("active");
+                const messages = {
+                    focus: "Great work! Your focus session is complete.",
+                    short: "Your short break is over. Ready to focus again?",
+                    long: "Your long break is over. Let's get back to it!"
+                };
+
+                playTimerSound();
+                showTimerNotification(messages[currentMode]);
+            }
+        }, 1000);
+    });
+}
+
+if (pauseTimer) {
+    pauseTimer.addEventListener("click", function() {
+        if (!isRunning) return;
+
+        clearInterval(timerInterval);
+        timerInterval = null;
+        isRunning = false;
+
+        if (timerStatus) {
+            timerStatus.textContent = "Session paused.";
+        }
+    });
+}
+
+if (resetTimer) {
+    resetTimer.addEventListener("click", function() {
+        if (timerNotification) {
+            timerNotification.classList.remove("show");
+        }
+
+        if (notificationMessage) {
+            notificationMessage.textContent = "";
+        }
+
+        clearInterval(timerInterval);
+        timerInterval = null;
+        isRunning = false;
+
+        timeLeft = selectedDuration * 60;
+
+        updateTimerDisplay();
+
+        if (timerStatus) {
+            timerStatus.textContent = "Ready when you are.";
+        }
+    });
+}
 
 updateTimerDisplay();
 
 
-/* =================================
+/* =========================
+   NOVA NOTES
+========================= */
+
+const noteForm = document.querySelector("#note-form");
+const noteTitle = document.querySelector("#note-title");
+const noteContent = document.querySelector("#note-content");
+const saveNote = document.querySelector("#save-note");
+const notesCounter = document.querySelector("#notes-counter");
+const notesEmpty = document.querySelector("#notes-empty");
+const notesList = document.querySelector("#notes-list");
+
+let notes = JSON.parse(localStorage.getItem("novaNotes")) || [];
+let editingNoteId = null;
+
+function saveNotes() {
+    localStorage.setItem("novaNotes", JSON.stringify(notes));
+}
+
+function renderNotes() {
+    if (!notesList) return;
+
+    notesList.innerHTML = "";
+
+    if (notesEmpty) {
+        notesEmpty.style.display = notes.length === 0 ? "block" : "none";
+    }
+
+    if (notesCounter) {
+        notesCounter.textContent =
+            notes.length + (notes.length === 1 ? " note" : " notes");
+    }
+
+    notes.forEach(function(note) {
+        const card = document.createElement("div");
+        card.classList.add("note-card");
+
+        const heading = document.createElement("h4");
+        heading.textContent = note.title;
+
+        const content = document.createElement("p");
+        content.textContent = note.content;
+
+        const actions = document.createElement("div");
+        actions.classList.add("note-actions");
+
+        const editButton = document.createElement("button");
+        editButton.type = "button";
+        editButton.textContent = "Edit";
+
+        editButton.addEventListener("click", function() {
+            noteTitle.value = note.title;
+            noteContent.value = note.content;
+
+            editingNoteId = note.id;
+            saveNote.textContent = "Update Note";
+
+            noteForm.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+            noteTitle.focus();
+        });
+
+        const deleteButton = document.createElement("button");
+        deleteButton.type = "button";
+        deleteButton.textContent = "Delete";
+
+        deleteButton.addEventListener("click", function() {
+            notes = notes.filter(function(item) {
+                return item.id !== note.id;
+            });
+
+            saveNotes();
+            renderNotes();
+
+            if (editingNoteId === note.id) {
+                editingNoteId = null;
+                noteForm.reset();
+                saveNote.textContent = "Save Note";
+            }
+        });
+
+        actions.appendChild(editButton);
+        actions.appendChild(deleteButton);
+
+        card.appendChild(heading);
+        card.appendChild(content);
+        card.appendChild(actions);
+
+        notesList.appendChild(card);
+    });
+}
+
+if (noteForm) {
+    noteForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const title = noteTitle.value.trim();
+        const content = noteContent.value.trim();
+
+        if (!title || !content) return;
+
+        if (editingNoteId !== null) {
+            const note = notes.find(function(item) {
+                return item.id === editingNoteId;
+            });
+
+            if (note) {
+                note.title = title;
+                note.content = content;
+            }
+
+            editingNoteId = null;
+            saveNote.textContent = "Save Note";
+        } else {
+            notes.push({
+                id: Date.now() + Math.random(),
+                title: title,
+                content: content
+            });
+        }
+
+        saveNotes();
+        renderNotes();
+        noteForm.reset();
+    });
+}
+
+renderNotes();
+
+
+/* =========================
+   NOVA GOALS
+========================= */
+
+const goalForm = document.querySelector("#goal-form");
+const goalTitle = document.querySelector("#goal-title");
+const goalDescription = document.querySelector("#goal-description");
+const goalDeadline = document.querySelector("#goal-deadline");
+const saveGoal = document.querySelector("#save-goal");
+const goalsCounter = document.querySelector("#goals-counter");
+const goalsEmpty = document.querySelector("#goals-empty");
+const goalsList = document.querySelector("#goals-list");
+
+let goals = JSON.parse(localStorage.getItem("novaGoals")) || [];
+
+function saveGoals() {
+    localStorage.setItem("novaGoals", JSON.stringify(goals));
+}
+
+function renderGoals() {
+    if (!goalsList) return;
+
+    goalsList.innerHTML = "";
+
+    if (goalsEmpty) {
+        goalsEmpty.style.display = goals.length === 0 ? "block" : "none";
+    }
+
+    if (goalsCounter) {
+        goalsCounter.textContent =
+            goals.length + (goals.length === 1 ? " goal" : " goals");
+    }
+
+    goals.forEach(function(goal) {
+        const card = document.createElement("div");
+        card.classList.add("goal-card");
+
+        if (goal.progress >= 100) {
+            card.classList.add("completed");
+        }
+
+        const heading = document.createElement("h4");
+        heading.textContent = goal.title;
+
+        const description = document.createElement("p");
+        description.textContent = goal.description || "No description added.";
+
+        const deadline = document.createElement("span");
+        deadline.classList.add("goal-deadline");
+
+        const formattedDate = new Date(
+            goal.deadline + "T00:00:00"
+        ).toLocaleDateString(undefined, {
+            year: "numeric",
+            month: "short",
+            day: "numeric"
+        });
+
+        deadline.textContent = "Target date: " + formattedDate;
+
+        const progressInfo = document.createElement("div");
+        progressInfo.classList.add("goal-progress-info");
+
+        const progressLabel = document.createElement("span");
+        progressLabel.textContent = "Progress";
+
+        const progressValue = document.createElement("span");
+        progressValue.textContent = goal.progress + "%";
+
+        progressInfo.appendChild(progressLabel);
+        progressInfo.appendChild(progressValue);
+
+        const progressTrack = document.createElement("div");
+        progressTrack.classList.add("goal-progress-track");
+
+        const progressFill = document.createElement("div");
+        progressFill.classList.add("goal-progress-fill");
+        progressFill.style.width = goal.progress + "%";
+
+        progressTrack.appendChild(progressFill);
+
+        const progressControls = document.createElement("div");
+        progressControls.classList.add("goal-progress-controls");
+
+        const progressSlider = document.createElement("input");
+        progressSlider.type = "range";
+        progressSlider.min = "0";
+        progressSlider.max = "100";
+        progressSlider.step = "5";
+        progressSlider.value = goal.progress;
+        progressSlider.setAttribute(
+            "aria-label",
+            "Update progress for " + goal.title
+        );
+
+        const sliderValue = document.createElement("span");
+        sliderValue.textContent = goal.progress + "%";
+
+        progressSlider.addEventListener("input", function() {
+            const value = Number(progressSlider.value);
+
+            progressValue.textContent = value + "%";
+            sliderValue.textContent = value + "%";
+            progressFill.style.width = value + "%";
+        });
+
+        progressSlider.addEventListener("change", function() {
+            goal.progress = Number(progressSlider.value);
+
+            saveGoals();
+            renderGoals();
+        });
+
+        progressControls.appendChild(progressSlider);
+        progressControls.appendChild(sliderValue);
+
+        const actions = document.createElement("div");
+        actions.classList.add("goal-actions");
+
+        const deleteButton = document.createElement("button");
+        deleteButton.type = "button";
+        deleteButton.textContent = "Delete";
+
+        deleteButton.addEventListener("click", function() {
+            goals = goals.filter(function(item) {
+                return item.id !== goal.id;
+            });
+
+            saveGoals();
+            renderGoals();
+        });
+
+        actions.appendChild(deleteButton);
+
+        card.appendChild(heading);
+        card.appendChild(description);
+        card.appendChild(deadline);
+        card.appendChild(progressInfo);
+        card.appendChild(progressTrack);
+        card.appendChild(progressControls);
+        card.appendChild(actions);
+
+        goalsList.appendChild(card);
+    });
+}
+
+if (goalForm) {
+    goalForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const title = goalTitle.value.trim();
+        const description = goalDescription.value.trim();
+        const deadline = goalDeadline.value;
+
+        if (!title || !deadline) return;
+
+        goals.push({
+            id: Date.now() + Math.random(),
+            title: title,
+            description: description,
+            deadline: deadline,
+            progress: 0
+        });
+
+        saveGoals();
+        renderGoals();
+
+        goalForm.reset();
+    });
+}
+
+renderGoals();
+
+
+/* =========================
    NOVA MOBILE NAVIGATION
-================================= */
+========================= */
 
 const menuToggle = document.querySelector("#menu-toggle");
 const navLinks = document.querySelector(".nav-links");
 
+if (menuToggle && navLinks) {
+    menuToggle.addEventListener("click", function() {
+        navLinks.classList.toggle("show");
 
-menuToggle.addEventListener("click", function() {
+        const isOpen = navLinks.classList.contains("show");
 
-    navLinks.classList.toggle("show");
-
-    const isOpen = navLinks.classList.contains("show");
-
-    menuToggle.setAttribute("aria-expanded", isOpen);
-
-    menuToggle.setAttribute(
-        "aria-label",
-        isOpen ? "Close navigation" : "Open navigation"
-    );
-
-    menuToggle.textContent = isOpen ? "✕" : "☰";
-
-});
-
-
-navLinks.querySelectorAll("a").forEach(link => {
-
-    link.addEventListener("click", function() {
-
-        navLinks.classList.remove("show");
-
-        menuToggle.setAttribute("aria-expanded", "false");
-
-        menuToggle.setAttribute("aria-label", "Open navigation");
-
-        menuToggle.textContent = "☰";
-
+        menuToggle.textContent = isOpen ? "✕" : "☰";
+        menuToggle.setAttribute("aria-expanded", isOpen);
+        menuToggle.setAttribute(
+            "aria-label",
+            isOpen ? "Close navigation" : "Open navigation"
+        );
     });
 
-});
+    navLinks.querySelectorAll("a").forEach(function(link) {
+        link.addEventListener("click", function() {
+            navLinks.classList.remove("show");
+
+            menuToggle.textContent = "☰";
+            menuToggle.setAttribute("aria-expanded", "false");
+            menuToggle.setAttribute("aria-label", "Open navigation");
+        });
+    });
+}

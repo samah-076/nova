@@ -29,6 +29,7 @@
             <a href="#goals">Goals</a>
             <a href="#habits">Habits</a>
             <a href="#insights">Insights</a>
+            <a href="#feedback">Feedback</a>
             <a href="#contact">Contact</a>
         </div>
     </nav>
@@ -335,7 +336,6 @@
                 ></textarea>
 
                 <label for="goal-deadline">Target date</label>
-
                 <input type="date" id="goal-deadline" required>
 
                 <button type="submit" id="save-goal">Create Goal</button>
@@ -424,7 +424,6 @@
 
         <div class="insights-container">
 
-            <!-- OVERVIEW -->
             <div class="insights-heading">
                 <h3>Your Productivity Overview</h3>
                 <p id="insights-date">Your activity at a glance</p>
@@ -462,7 +461,6 @@
 
             </div>
 
-            <!-- TASK PROGRESS -->
             <div class="insight-panel">
                 <h3>Task Progress</h3>
                 <p>How much of your task list have you completed?</p>
@@ -477,7 +475,6 @@
                 </div>
             </div>
 
-            <!-- HABIT PROGRESS -->
             <div class="insight-panel">
                 <h3>Today's Habit Progress</h3>
                 <p>Keep building consistency through small actions.</p>
@@ -492,7 +489,6 @@
                 </div>
             </div>
 
-            <!-- WEEKLY ACTIVITY -->
             <div class="insight-panel">
                 <h3>Your Weekly Activity</h3>
                 <p>Your completed tasks across the last seven days.</p>
@@ -504,7 +500,6 @@
                 </div>
             </div>
 
-            <!-- INSIGHTS MESSAGE -->
             <div class="insight-message">
                 <h3>Your NOVA Reflection</h3>
                 <p id="insight-reflection">
@@ -512,6 +507,51 @@
                 </p>
             </div>
 
+        </div>
+    </section>
+
+    <!-- NOVA FEEDBACK -->
+    <section id="feedback">
+        <div class="section-heading">
+            <span>HELP US IMPROVE</span>
+            <h2>Share Your Feedback</h2>
+            <p>Your experience and ideas can help us make NOVA better.</p>
+        </div>
+
+        <div class="feedback-container">
+            <form id="feedback-form">
+
+                <label for="feedback-name">Your Name</label>
+                <input
+                    type="text"
+                    id="feedback-name"
+                    placeholder="Enter your name"
+                    required
+                >
+
+                <label for="feedback-type">What is your feedback about?</label>
+                <select id="feedback-type" required>
+                    <option value="">Choose a category</option>
+                    <option value="General Experience">General Experience</option>
+                    <option value="Features">Features</option>
+                    <option value="Design">Design</option>
+                    <option value="Suggestions">Suggestions</option>
+                    <option value="Problems">Problems or Bugs</option>
+                </select>
+
+                <label for="feedback-message">Tell us what you think</label>
+                <textarea
+                    id="feedback-message"
+                    placeholder="Share your experience or suggestions..."
+                    rows="6"
+                    required
+                ></textarea>
+
+                <button type="submit">Submit Feedback</button>
+
+                <p id="feedback-status" aria-live="polite"></p>
+
+            </form>
         </div>
     </section>
 

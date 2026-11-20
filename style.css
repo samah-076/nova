@@ -1531,3 +1531,85 @@ footer .copyright {
         font-size: 10px;
     }
 }
+/* =========================
+   NOVA FEEDBACK
+========================= */
+
+#feedback {
+    background: #080810;
+}
+
+.feedback-container {
+    max-width: 650px;
+    margin: auto;
+    padding: 30px;
+    background: #11111d;
+    border: 1px solid #38264b;
+    border-radius: 14px;
+}
+
+#feedback-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#feedback-form label {
+    color: #bd65ff;
+    font-size: 14px;
+}
+
+#feedback-name,
+#feedback-type,
+#feedback-message {
+    width: 100%;
+    padding: 13px;
+    background: #090912;
+    color: white;
+    border: 1px solid #383047;
+    border-radius: 7px;
+    outline: none;
+}
+
+#feedback-type {
+    color-scheme: dark;
+}
+
+#feedback-message {
+    resize: vertical;
+    min-height: 150px;
+}
+
+#feedback-name:focus,
+#feedback-type:focus,
+#feedback-message:focus {
+    border-color: #bd65ff;
+}
+
+#feedback-form button {
+    padding: 13px 20px;
+    background: #a84df0;
+    color: white;
+    border-radius: 7px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+#feedback-form button:hover {
+    background: #bd65ff;
+}
+
+#feedback-status {
+    color: #bd65ff;
+    font-size: 14px;
+}
+
+@media (max-width: 700px) {
+    .feedback-container {
+        padding: 20px;
+    }
+
+    #feedback-form button {
+        width: 100%;
+    }
+}

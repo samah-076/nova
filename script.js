@@ -1401,3 +1401,72 @@ if (menuToggle && navLinks) {
         });
     });
 }
+
+/* =========================
+   NOVA FEEDBACK FORM
+========================= */
+
+const feedbackForm = document.querySelector("#feedback-form");
+
+if (feedbackForm) {
+    feedbackForm.addEventListener("submit", async function(event) {
+        event.preventDefault();
+
+        const feedbackName =
+            document.querySelector("#feedback-name").value.trim();
+
+        const feedbackType =
+            document.querySelector("#feedback-type").value;
+
+        const feedbackMessage =
+            document.querySelector("#feedback-message").value.trim();
+
+        const feedbackStatus =
+            document.querySelector("#feedback-status");
+
+        const submitButton =
+            feedbackForm.querySelector('button[type="submit"]');
+
+        const formData = new FormData();
+
+        formData.append("name", feedbackName);
+        formData.append("feedback_type", feedbackType);
+        formData.append("message", feedbackMessage);
+
+        submitButton.disabled = true;
+        submitButton.textContent = "Sending...";
+        feedbackStatus.textContent = "Sending your feedback...";
+
+        try {
+            const response = await fetch(
+                "https://formspree.io/f/mkjrvjjb",
+                {
+                    method: "POST",
+                    body: formData,
+                    headers: {
+                        "Accept": "application/json"
+                    }
+                }
+            );
+
+            if (response.ok) {
+                feedbackStatus.textContent =
+                    "Thank you! Your feedback has been received.";
+
+                feedbackForm.reset();
+            } else {
+                feedbackStatus.textContent =
+                    "Sorry, we couldn't send your feedback. Please try again.";
+            }
+
+        } catch (error) {
+            feedbackStatus.textContent =
+                "Connection error. Please check your internet and try again.";
+
+        } finally {
+            submitButton.disabled = false;
+            submitButton.textContent = "Submit Feedback";
+        }
+    });
+}
+

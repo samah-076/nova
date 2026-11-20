@@ -27,6 +27,8 @@
             <a href="#planner">Planner</a>
             <a href="#notes">Notes</a>
             <a href="#goals">Goals</a>
+            <a href="#habits">Habits</a>
+            <a href="#insights">Insights</a>
             <a href="#contact">Contact</a>
         </div>
     </nav>
@@ -126,10 +128,17 @@
             </div>
 
             <div class="product-card">
+                <span class="product-icon">↻</span>
+                <h3>NOVA Habits</h3>
+                <p>Build routines, track consistency and develop better habits.</p>
+                <span class="product-status">Available</span>
+            </div>
+
+            <div class="product-card">
                 <span class="product-icon">◈</span>
                 <h3>NOVA Insights</h3>
                 <p>Understand how you use your time and plan better.</p>
-                <span class="product-status">Coming Soon</span>
+                <a href="#insights" class="product-status">Explore Insights</a>
             </div>
         </div>
     </section>
@@ -311,9 +320,7 @@
         </div>
 
         <div class="goals-container">
-
             <form id="goal-form">
-
                 <input
                     type="text"
                     id="goal-title"
@@ -329,16 +336,9 @@
 
                 <label for="goal-deadline">Target date</label>
 
-                <input
-                    type="date"
-                    id="goal-deadline"
-                    required
-                >
+                <input type="date" id="goal-deadline" required>
 
-                <button type="submit" id="save-goal">
-                    Create Goal
-                </button>
-
+                <button type="submit" id="save-goal">Create Goal</button>
             </form>
 
             <div class="goals-heading">
@@ -351,6 +351,166 @@
             </p>
 
             <div id="goals-list" class="goals-grid"></div>
+        </div>
+    </section>
+
+    <!-- NOVA HABITS -->
+    <section id="habits">
+        <div class="section-heading">
+            <span>SMALL STEPS. BIG CHANGES.</span>
+            <h2>NOVA Habits</h2>
+            <p>Build positive routines and stay consistent, one day at a time.</p>
+        </div>
+
+        <div class="habits-container">
+
+            <form id="habit-form">
+                <input
+                    type="text"
+                    id="habit-title"
+                    placeholder="What habit do you want to build?"
+                    required
+                >
+
+                <select id="habit-frequency" required>
+                    <option value="daily">Every day</option>
+                    <option value="weekdays">Weekdays</option>
+                    <option value="weekends">Weekends</option>
+                </select>
+
+                <button type="submit" id="save-habit">
+                    Add Habit
+                </button>
+            </form>
+
+            <div class="habits-summary">
+                <div class="habit-stat">
+                    <span id="habits-completed">0</span>
+                    <p>Completed today</p>
+                </div>
+
+                <div class="habit-stat">
+                    <span id="habits-total">0</span>
+                    <p>Total habits</p>
+                </div>
+
+                <div class="habit-stat">
+                    <span id="habits-rate">0%</span>
+                    <p>Today's progress</p>
+                </div>
+            </div>
+
+            <div class="habits-heading">
+                <h3>Your Daily Habits</h3>
+                <p id="habits-date"></p>
+            </div>
+
+            <p id="habits-empty">
+                No habits yet. Add a habit you'd like to build!
+            </p>
+
+            <div id="habits-list" class="habits-list"></div>
+
+        </div>
+    </section>
+
+    <!-- NOVA INSIGHTS -->
+    <section id="insights">
+        <div class="section-heading">
+            <span>UNDERSTAND YOUR PROGRESS</span>
+            <h2>NOVA Insights</h2>
+            <p>See your activity, recognise your progress and understand your time.</p>
+        </div>
+
+        <div class="insights-container">
+
+            <!-- OVERVIEW -->
+            <div class="insights-heading">
+                <h3>Your Productivity Overview</h3>
+                <p id="insights-date">Your activity at a glance</p>
+            </div>
+
+            <div class="insights-grid">
+
+                <div class="insight-card">
+                    <span class="insight-icon">✓</span>
+                    <h4>Tasks Completed</h4>
+                    <span class="insight-value" id="insight-tasks-completed">0</span>
+                    <p id="insight-tasks-detail">0 tasks in total</p>
+                </div>
+
+                <div class="insight-card">
+                    <span class="insight-icon">◷</span>
+                    <h4>Focus Sessions</h4>
+                    <span class="insight-value" id="insight-focus-sessions">0</span>
+                    <p id="insight-focus-detail">0 minutes focused</p>
+                </div>
+
+                <div class="insight-card">
+                    <span class="insight-icon">↻</span>
+                    <h4>Habits Completed</h4>
+                    <span class="insight-value" id="insight-habits-completed">0</span>
+                    <p id="insight-habits-detail">0 habits scheduled today</p>
+                </div>
+
+                <div class="insight-card">
+                    <span class="insight-icon">◎</span>
+                    <h4>Goals Completed</h4>
+                    <span class="insight-value" id="insight-goals-completed">0</span>
+                    <p id="insight-goals-detail">0 active goals</p>
+                </div>
+
+            </div>
+
+            <!-- TASK PROGRESS -->
+            <div class="insight-panel">
+                <h3>Task Progress</h3>
+                <p>How much of your task list have you completed?</p>
+
+                <div class="insight-progress-track">
+                    <div class="insight-progress-fill" id="insight-task-progress"></div>
+                </div>
+
+                <div class="insight-progress-info">
+                    <span id="insight-task-progress-label">0% completed</span>
+                    <span id="insight-task-count">0 of 0 tasks</span>
+                </div>
+            </div>
+
+            <!-- HABIT PROGRESS -->
+            <div class="insight-panel">
+                <h3>Today's Habit Progress</h3>
+                <p>Keep building consistency through small actions.</p>
+
+                <div class="insight-progress-track">
+                    <div class="insight-progress-fill" id="insight-habit-progress"></div>
+                </div>
+
+                <div class="insight-progress-info">
+                    <span id="insight-habit-progress-label">0% completed</span>
+                    <span id="insight-habit-count">0 of 0 habits</span>
+                </div>
+            </div>
+
+            <!-- WEEKLY ACTIVITY -->
+            <div class="insight-panel">
+                <h3>Your Weekly Activity</h3>
+                <p>Your completed tasks across the last seven days.</p>
+
+                <div class="weekly-chart" id="insight-weekly-chart">
+                    <div class="weekly-chart-empty">
+                        Your weekly activity will appear here.
+                    </div>
+                </div>
+            </div>
+
+            <!-- INSIGHTS MESSAGE -->
+            <div class="insight-message">
+                <h3>Your NOVA Reflection</h3>
+                <p id="insight-reflection">
+                    Your activity summary will appear here as you use NOVA.
+                </p>
+            </div>
 
         </div>
     </section>

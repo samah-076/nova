@@ -981,3 +981,168 @@ footer {
     }
 
 }
+/* NOVA QUICK PLANNER */
+
+.planner {
+    padding: 80px 10%;
+    text-align: center;
+}
+
+.planner > p:not(.section-label) {
+    max-width: 600px;
+    margin: 15px auto 35px;
+    color: #b9b0c5;
+    line-height: 1.7;
+}
+
+.planner-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    max-width: 950px;
+    margin: 40px auto 0;
+    text-align: left;
+}
+
+#task-form,
+.task-list-container {
+    padding: 30px;
+    background: #171020;
+    border: 1px solid #392447;
+    border-radius: 12px;
+}
+
+#task-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#task-form label {
+    color: #e5d9ed;
+    font-size: 14px;
+}
+
+#task-form input,
+#task-form select {
+    width: 100%;
+    padding: 13px;
+    background: #24172e;
+    color: white;
+    border: 1px solid #493357;
+    border-radius: 6px;
+    outline: none;
+}
+
+#task-form button {
+    padding: 13px;
+    margin-top: 10px;
+    background: #bd65ff;
+    color: #160c20;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.task-list-container h3 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+#task-list {
+    list-style: none;
+    padding: 0;
+}
+
+#empty-message {
+    color: #a99bb4;
+    font-size: 14px;
+}
+
+@media (max-width: 700px) {
+    .planner-container {
+        grid-template-columns: 1fr;
+    }
+
+    .planner {
+        padding: 60px 7%;
+    }
+}
+/* PLANNER TASK BUTTONS */
+
+#task-list li {
+    padding: 18px;
+    margin-bottom: 15px;
+    background: #24172e;
+    border: 1px solid #493357;
+    border-radius: 8px;
+    color: white;
+}
+
+#task-list li span {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#task-list li small {
+    display: inline-block;
+    margin: 8px 0;
+    color: #bd65ff;
+}
+
+#task-list li button {
+    padding: 8px 12px;
+    margin: 5px 5px 0 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#task-list li button:first-of-type {
+    background: #bd65ff;
+    color: #160c20;
+}
+
+#task-list li button:last-of-type {
+    background: #392447;
+    color: #ffffff;
+}
+
+#task-list li button:disabled {
+    opacity: 0.6;
+    cursor: default;
+}
+/* PLANNER TASK COUNTER */
+
+#task-counter {
+    display: inline-block;
+    padding: 9px 15px;
+    margin-bottom: 20px;
+    background: #24172e;
+    border: 1px solid #493357;
+    border-radius: 20px;
+    color: #bd65ff;
+    font-size: 13px;
+    font-weight: bold;
+}
+/* CLEAR ALL TASKS BUTTON */
+
+#clear-tasks {
+    padding: 9px 15px;
+    margin-bottom: 20px;
+    background: transparent;
+    color: #bd65ff;
+    border: 1px solid #bd65ff;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+#clear-tasks:hover {
+    background: #bd65ff;
+    color: #160c20;
+}

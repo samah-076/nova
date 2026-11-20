@@ -25,6 +25,7 @@
             <a href="#projects">Projects</a>
             <a href="#solutions">Solutions</a>
             <a href="#technology">Technology</a>
+            <a href="#planner">Planner</a>
             <a href="#contact">Contact</a>
         </div>
     </nav>
@@ -234,7 +235,60 @@
     </p>
 
 </section>
+<!-- NOVA QUICK PLANNER -->
+<section class="planner" id="planner">
 
+    <p class="section-label">A LITTLE MORE PRODUCTIVE</p>
+
+    <h2>NOVA Quick Planner.</h2>
+
+    <p>
+        Organise your thoughts, plan your tasks
+        and make progress one step at a time.
+    </p>
+
+    <div class="planner-container">
+
+        <form id="task-form">
+
+            <label for="task-input">What do you need to do?</label>
+
+            <input
+                type="text"
+                id="task-input"
+                placeholder="Enter a task..."
+                required
+            >
+
+            <label for="task-priority">Choose priority</label>
+
+            <select id="task-priority">
+                <option value="Low">Low</option>
+                <option value="Medium" selected>Medium</option>
+                <option value="High">High</option>
+            </select>
+
+            <button type="submit">Add Task</button>
+
+        </form>
+
+        <div class="task-list-container">
+
+            <h3>Your Tasks</h3>
+            <p id="task-counter">0 tasks | 0 completed</p>
+            <button id="clear-tasks">Clear All Tasks</button>
+
+            <ul id="task-list"></ul>
+
+            <p id="empty-message">
+                No tasks yet. Add your first task!
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
     <!-- CONTACT SECTION -->
 <section class="contact" id="contact">
 
@@ -299,6 +353,7 @@
             <a href="#about">About</a>
             <a href="#projects">Projects</a>
             <a href="#contact">Contact</a>
+            <a href="#planner">Planner</a>
         </div>
 
     </div>

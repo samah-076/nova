@@ -1,5 +1,7 @@
 
-/* GENERAL SETTINGS */
+/* =================================
+   NOVA — GLOBAL STYLES
+================================= */
 
 * {
     margin: 0;
@@ -12,177 +14,365 @@ html {
 }
 
 body {
-    background-color: #080810;
-    color: white;
+    background: #080810;
+    color: #ffffff;
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    scroll-behavior: smooth;
 }
 
-
-
-/* NAVIGATION */
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 7%;
-    background-color: #11111d;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-nav h2 {
-    color: #bd65ff;
-    font-size: 28px;
-    letter-spacing: 3px;
-}
-
-nav div {
-    display: flex;
-    gap: 25px;
-    flex-wrap: wrap;
-}
-
-nav a {
-    color: white;
+a {
     text-decoration: none;
-    transition: color 0.3s ease;
+    color: inherit;
 }
 
-nav a:hover {
-    color: #bd65ff;
+button,
+input,
+select,
+textarea {
+    font: inherit;
 }
-#menu-toggle {
-    display: none;
-    background: transparent;
-    border: 1px solid #bd65ff;
-    color: white;
-    font-size: 24px;
-    padding: 5px 12px;
-    border-radius: 6px;
+
+button {
     cursor: pointer;
 }
 
 
-/* HERO SECTION */
+/* =================================
+   NAVIGATION
+================================= */
 
-.hero {
-    min-height: 85vh;
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    text-align: center;
-    padding: 80px 20px;
-    background: linear-gradient(135deg, #11111d, #211034);
+
+    padding: 20px 8%;
+
+    background: rgba(8, 8, 16, 0.95);
+    border-bottom: 1px solid #242033;
+    backdrop-filter: blur(12px);
 }
 
-.hero p:first-child {
+nav h2 {
     color: #bd65ff;
-    letter-spacing: 4px;
-    font-weight: bold;
+    font-size: 27px;
+    letter-spacing: 3px;
 }
 
-.hero h1 {
-    font-size: 55px;
-    max-width: 900px;
-    line-height: 1.2;
-    margin: 20px 0;
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
 }
 
-.hero p {
-    max-width: 650px;
-    color: #c4c4d0;
-    font-size: 18px;
-    margin-bottom: 25px;
-}
-
-.hero a {
-    display: inline-block;
-    padding: 12px 25px;
-    margin: 8px;
-    border-radius: 8px;
-    background-color: #9b45e8;
-    color: white;
-    text-decoration: none;
+.nav-links a {
+    color: #ccccd5;
+    font-size: 14px;
     transition: 0.3s;
 }
 
-.hero a:hover {
-    background-color: white;
-    color: #9b45e8;
-}
-
-
-/* GENERAL SECTION SETTINGS */
-
-section:not(.hero) {
-    padding: 80px 7%;
-}
-
-section h2 {
-    text-align: center;
-    font-size: 35px;
+.nav-links a:hover {
     color: #bd65ff;
-    margin-bottom: 25px;
 }
 
-section > p {
-    text-align: center;
-    color: #c4c4d0;
-    max-width: 750px;
-    margin: 0 auto 25px;
+#menu-toggle {
+    display: none;
+
+    background: transparent;
+    border: 1px solid #bd65ff;
+    color: white;
+
+    font-size: 24px;
+    padding: 5px 12px;
+    border-radius: 6px;
 }
 
 
-/* ABOUT SECTION */
+/* =================================
+   HERO SECTION
+================================= */
 
-.about {
-    background-color: #0d0d18;
-    text-align: center;
+.hero {
+    min-height: 85vh;
+    padding: 80px 8%;
+
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    gap: 50px;
+
+    background:
+        radial-gradient(
+            circle at 80% 40%,
+            rgba(142, 68, 204, 0.16),
+            transparent 40%
+        ),
+        #080810;
 }
 
-.about h3 {
+.hero-content {
+    max-width: 700px;
+}
+
+.hero-label {
     color: #bd65ff;
-    margin: 25px 0 10px;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 4px;
 }
 
-.about p {
-    max-width: 750px;
-    margin: 0 auto 15px;
-    color: #c4c4d0;
+.hero h1 {
+    font-size: clamp(38px, 5vw, 65px);
+    line-height: 1.15;
+    margin: 25px 0;
 }
 
-
-/* PROJECTS SECTION */
-
-.projects {
-    background-color: #11111d;
+.hero p {
+    color: #aaaaba;
+    max-width: 580px;
+    font-size: 17px;
+    line-height: 1.8;
 }
 
-.project-container {
+.hero-buttons {
     display: flex;
-    justify-content: center;
-    gap: 25px;
     flex-wrap: wrap;
+    gap: 15px;
     margin-top: 35px;
 }
 
-.project-card {
-    background-color: #1b1b2b;
-    padding: 30px;
+.primary-button,
+.secondary-button {
+    display: inline-block;
+    padding: 13px 25px;
+    border-radius: 7px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.primary-button {
+    background: #8e44cc;
+    color: white;
+}
+
+.primary-button:hover {
+    background: #a85be8;
+    transform: translateY(-3px);
+}
+
+.secondary-button {
+    border: 1px solid #bd65ff;
+    color: #bd65ff;
+}
+
+.secondary-button:hover {
+    background: #bd65ff;
+    color: white;
+}
+
+.hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tech-circle {
+    width: min(320px, 75vw);
+    aspect-ratio: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 2px solid #bd65ff;
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 35px rgba(189, 101, 255, 0.25),
+        inset 0 0 35px rgba(189, 101, 255, 0.12);
+}
+
+.tech-circle span {
+    font-size: 130px;
+    font-weight: bold;
+    color: #bd65ff;
+}
+
+
+/* =================================
+   SECTION HEADINGS
+================================= */
+
+.section-heading {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 50px;
+}
+
+.section-heading > span {
+    color: #bd65ff;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.section-heading h2 {
+    font-size: 36px;
+    margin: 10px 0 15px;
+}
+
+.section-heading p {
+    color: #aaaaba;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+
+/* =================================
+   ABOUT SECTION
+================================= */
+
+.about {
+    padding: 100px 8%;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 50px;
+
+    background: #0d0d19;
+}
+
+.about-content h2 {
+    font-size: 36px;
+    margin-bottom: 25px;
+}
+
+.about-content p {
+    color: #aaaaba;
+    margin-bottom: 18px;
+    line-height: 1.9;
+}
+
+.about-visual {
+    display: flex;
+    justify-content: center;
+}
+
+.about-card {
+    width: 100%;
+    max-width: 400px;
+    padding: 40px;
+
+    background: #141422;
+    border: 1px solid #352544;
     border-radius: 15px;
-    flex: 1 1 250px;
-    max-width: 350px;
-    border: 1px solid #343044;
-    transition: transform 0.3s ease;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.about-card h3 {
+    color: #bd65ff;
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+
+.about-card p {
+    color: #aaaaba;
+    line-height: 1.8;
+}
+
+
+/* =================================
+   PRODUCTS SECTION
+================================= */
+
+.products {
+    padding: 100px 8%;
+    background: #080810;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+
+    max-width: 1100px;
+    margin: auto;
+}
+
+.product-card {
+    background: #141422;
+    border: 1px solid #29243a;
+    border-radius: 15px;
+
+    padding: 30px;
+
+    transition: 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+    border-color: #bd65ff;
+    box-shadow: 0 10px 30px rgba(142, 68, 204, 0.1);
+}
+
+.product-icon {
+    font-size: 32px;
+}
+
+.product-card h3 {
+    margin: 18px 0 12px;
+    font-size: 21px;
+}
+
+.product-card p {
+    color: #aaaaba;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.product-status {
+    color: #bd65ff;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.coming-soon {
+    color: #9999a9;
+}
+
+
+/* =================================
+   PROJECTS SECTION
+================================= */
+
+.projects {
+    padding: 100px 8%;
+    background: #0d0d19;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.project-card {
+    padding: 30px;
+    background: #141422;
+    border: 1px solid #29243a;
+    border-radius: 13px;
+    transition: 0.3s;
 }
 
 .project-card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-5px);
+    border-color: #bd65ff;
 }
 
 .project-card h3 {
@@ -191,37 +381,37 @@ section > p {
 }
 
 .project-card p {
-    color: #c4c4d0;
-    margin-bottom: 15px;
-}
-
-.project-card span {
-    color: #bd65ff;
-    font-size: 14px;
+    color: #aaaaba;
+    line-height: 1.8;
 }
 
 
-/* SOLUTIONS SECTION */
+/* =================================
+   SOLUTIONS SECTION
+================================= */
 
 .solutions {
-    background-color: #0d0d18;
+    padding: 100px 8%;
+    background: #080810;
 }
 
-.solution-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+.solutions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 25px;
-    margin-top: 35px;
 }
 
 .solution-card {
-    flex: 1 1 250px;
-    max-width: 350px;
     padding: 30px;
-    background-color: #1b1b2b;
-    border-radius: 15px;
-    text-align: center;
+    background: #141422;
+    border: 1px solid #29243a;
+    border-radius: 13px;
+    transition: 0.3s;
+}
+
+.solution-card:hover {
+    border-color: #bd65ff;
+    transform: translateY(-5px);
 }
 
 .solution-card h3 {
@@ -230,1060 +420,557 @@ section > p {
 }
 
 .solution-card p {
-    color: #c4c4d0;
+    color: #aaaaba;
+    line-height: 1.8;
 }
 
 
-/* TECHNOLOGY SECTION */
+/* =================================
+   TECHNOLOGY SECTION
+================================= */
 
 .technology {
-    background-color: #11111d;
+    padding: 100px 8%;
+    background: #0d0d19;
+}
+
+.technology-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.technology-card {
+    padding: 25px;
     text-align: center;
+
+    background: #141422;
+    border: 1px solid #29243a;
+    border-radius: 12px;
+
+    transition: 0.3s;
 }
 
-.technology-list {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-top: 30px;
+.technology-card:hover {
+    border-color: #bd65ff;
+    transform: translateY(-5px);
 }
 
-.technology-list span {
-    padding: 12px 22px;
-    background-color: #211034;
-    border: 1px solid #9b45e8;
-    border-radius: 25px;
+.technology-card h3 {
+    color: #bd65ff;
+    margin-bottom: 12px;
+}
+
+.technology-card p {
+    color: #aaaaba;
+    font-size: 14px;
 }
 
 
-/* CONTACT SECTION */
+/* =================================
+   PLANNER SECTION
+================================= */
 
-.contact {
-    background-color: #0d0d18;
+.planner {
+    padding: 100px 8%;
+    background: #080810;
 }
 
-.contact form {
-    display: flex;
-    flex-direction: column;
+#task-form {
+    max-width: 800px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: 1fr 180px auto;
     gap: 12px;
-    max-width: 450px;
-    margin: 30px auto 0;
 }
 
-.contact label {
+#task-input,
+#task-priority {
+    width: 100%;
+    padding: 13px;
+
+    background: #141422;
+    border: 1px solid #39304b;
+    border-radius: 7px;
+
+    color: white;
+    outline: none;
+}
+
+#task-input:focus,
+#task-priority:focus {
+    border-color: #bd65ff;
+}
+
+#task-form button,
+#clear-tasks {
+    padding: 12px 18px;
+    background: #8e44cc;
+    border: none;
+    border-radius: 7px;
     color: white;
     font-weight: bold;
 }
 
-.contact input,
-.contact textarea {
-    padding: 14px;
-    border: 2px solid #343044;
-    border-radius: 8px;
-    background-color: #1b1b2b;
-    color: white;
-    font-size: 16px;
+#task-form button:hover,
+#clear-tasks:hover {
+    background: #a85be8;
 }
 
-.contact input:focus,
-.contact textarea:focus {
-    outline: none;
-    border-color: #bd65ff;
+#task-counter {
+    max-width: 800px;
+    margin: 25px auto 15px;
+    color: #bd65ff;
+    font-size: 14px;
 }
 
-.contact textarea {
-    min-height: 130px;
-    resize: vertical;
+#clear-tasks {
+    display: block;
+    max-width: 800px;
+    margin: 0 auto 20px;
+
+    background: #282034;
+    border: 1px solid #514064;
 }
 
-.contact button {
-    padding: 14px;
-    background-color: #9b45e8;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
+#empty-message {
+    text-align: center;
+    color: #888;
+    margin: 25px 0;
+}
+
+#task-list {
+    list-style: none;
+    max-width: 800px;
+    margin: auto;
+}
+
+#task-list li {
+    background: #141422;
+    border: 1px solid #352544;
+    border-radius: 10px;
+
+    padding: 18px;
+    margin-bottom: 15px;
+
     transition: 0.3s;
 }
 
-.contact button:hover {
-    background-color: white;
-    color: #9b45e8;
+#task-list li.completed {
+    border-color: #6d4b83;
+    opacity: 0.7;
+}
+
+#task-list li.completed span {
+    text-decoration: line-through;
+}
+
+#task-list li span {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#task-list li small {
+    display: inline-block;
+    color: #bd65ff;
+    margin-bottom: 12px;
+}
+
+#task-list button {
+    padding: 8px 13px;
+    margin-right: 8px;
+    margin-top: 5px;
+
+    border: none;
+    border-radius: 5px;
+
+    color: white;
+    background: #8e44cc;
+}
+
+#task-list button:disabled {
+    background: #514064;
+    cursor: not-allowed;
+}
+
+#task-list button:last-child {
+    background: #302333;
 }
 
 
-/* FOOTER */
+/* =================================
+   FOCUS TIMER SECTION
+================================= */
+
+.focus-timer {
+    padding: 100px 8%;
+    background: #0d0d19;
+}
+
+.timer-card {
+    max-width: 550px;
+    margin: auto;
+    padding: 35px;
+
+    text-align: center;
+
+    background: #141422;
+    border: 1px solid #352544;
+    border-radius: 16px;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.timer-card h3 {
+    color: #bd65ff;
+    font-size: 23px;
+    margin-bottom: 25px;
+}
+
+.timer-modes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+}
+
+.timer-modes button {
+    padding: 10px 15px;
+
+    border: 1px solid #514064;
+    border-radius: 6px;
+
+    background: #201b2c;
+    color: white;
+
+    transition: 0.3s;
+}
+
+.timer-modes button:hover,
+.timer-modes button.active {
+    background: #8e44cc;
+    border-color: #8e44cc;
+}
+
+#timer-display {
+    font-size: 65px;
+    font-weight: bold;
+    color: white;
+    margin: 30px 0;
+    letter-spacing: 3px;
+}
+
+.timer-settings {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    margin-bottom: 25px;
+}
+
+.timer-settings label {
+    width: 100%;
+    color: #aaaaba;
+    font-size: 14px;
+}
+
+#focus-duration {
+    width: 100px;
+    padding: 10px;
+
+    background: #080810;
+    border: 1px solid #514064;
+    border-radius: 6px;
+
+    color: white;
+    text-align: center;
+}
+
+#set-timer {
+    padding: 10px 15px;
+    background: #352544;
+    border: 1px solid #bd65ff;
+    border-radius: 6px;
+    color: white;
+}
+
+.timer-controls {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.timer-controls button {
+    padding: 12px 22px;
+    background: #8e44cc;
+    border: none;
+    border-radius: 7px;
+    color: white;
+    font-weight: bold;
+}
+
+.timer-controls button:hover,
+#set-timer:hover {
+    background: #a85be8;
+}
+
+#timer-status {
+    margin-top: 22px;
+    color: #aaaaba;
+}
+
+
+/* =================================
+   TIMER NOTIFICATION
+================================= */
+
+.timer-notification {
+    display: none;
+
+    margin-top: 18px;
+    padding: 14px;
+
+    border: 1px solid #8e44cc;
+    border-radius: 10px;
+
+    background: #10091a;
+    color: white;
+    text-align: center;
+}
+
+.timer-notification.show {
+    display: block;
+}
+
+#notification-message {
+    margin: 0;
+}
+
+
+/* =================================
+   CONTACT SECTION
+================================= */
+
+.contact {
+    padding: 100px 8%;
+    background: #080810;
+}
+
+#contact-form {
+    max-width: 650px;
+    margin: auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#contact-form input,
+#contact-form textarea {
+    width: 100%;
+    padding: 15px;
+
+    background: #141422;
+    border: 1px solid #39304b;
+    border-radius: 7px;
+
+    color: white;
+    outline: none;
+}
+
+#contact-form input:focus,
+#contact-form textarea:focus {
+    border-color: #bd65ff;
+}
+
+#contact-form textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+#contact-form button {
+    padding: 14px;
+    background: #8e44cc;
+    border: none;
+    border-radius: 7px;
+    color: white;
+    font-weight: bold;
+}
+
+#contact-form button:hover {
+    background: #a85be8;
+}
+
+
+/* =================================
+   FOOTER
+================================= */
 
 footer {
-    background-color: #11111d;
+    padding: 45px 8%;
     text-align: center;
-    padding: 40px 20px;
-    color: #9999aa;
+
+    background: #0d0d19;
+    border-top: 1px solid #29243a;
 }
 
 footer h2 {
     color: #bd65ff;
+    font-size: 27px;
     letter-spacing: 3px;
     margin-bottom: 10px;
 }
 
+footer p {
+    color: #9999a9;
+    margin-bottom: 8px;
+}
 
-/* MOBILE RESPONSIVENESS */
+footer .copyright {
+    margin-top: 25px;
+    font-size: 13px;
+}
+
+
+/* =================================
+   RESPONSIVE DESIGN
+================================= */
+
+@media (max-width: 1000px) {
+
+    nav {
+        padding: 18px 5%;
+    }
+
+    .nav-links {
+        gap: 13px;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+    }
+
+    .technology-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
 
 @media (max-width: 700px) {
 
     nav {
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    padding: 18px;
-}
-
-#menu-toggle {
-    display: block;
-}
-
-.nav-links {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    gap: 18px;
-    text-align: center;
-}
-
-.nav-links.show {
-    display: flex;
-    background-color: #11111d;
-    padding: 20px 0;
-    border-top: 1px solid #bd65ff;
-}
-
-    nav div {
-        justify-content: center;
-        gap: 15px;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        padding: 18px;
     }
 
-    nav a {
-        font-size: 14px;
+    #menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        gap: 18px;
+        text-align: center;
+    }
+
+    .nav-links.show {
+        display: flex;
+        background-color: #11111d;
+        padding: 20px 0;
+        border-top: 1px solid #bd65ff;
     }
 
     .hero {
         min-height: 70vh;
         padding: 60px 18px;
+
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 45px;
     }
 
-    .hero h1 {
-        font-size: 34px;
+    .hero-content {
+        margin: auto;
     }
 
     .hero p {
-        font-size: 16px;
-    }
-
-    section:not(.hero) {
-        padding: 55px 20px;
-    }
-
-    section h2 {
-        font-size: 28px;
-    }
-
-    .project-card,
-    .solution-card {
-        max-width: 100%;
-    }
-
-}
-
-
-/* NOVA HERO UPGRADE */
-
-.hero {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    align-items: center;
-    gap: 40px;
-    text-align: left;
-    padding: 80px 7%;
-    min-height: 85vh;
-}
-
-.hero-content {
-    max-width: 650px;
-}
-
-.hero-label {
-    color: #bd65ff !important;
-    font-weight: bold;
-    letter-spacing: 4px;
-    margin-bottom: 15px !important;
-}
-
-.hero h1 {
-    font-size: 52px;
-    line-height: 1.2;
-    margin: 15px 0 20px;
-}
-
-.hero-content > p:not(.hero-label) {
-    color: #c4c4d0;
-    font-size: 18px;
-    margin-bottom: 25px;
-}
-
-.hero-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-}
-
-.hero-buttons a {
-    margin: 0;
-}
-
-.hero-buttons a:last-child {
-    background: transparent;
-    border: 1px solid #bd65ff;
-}
-
-.hero-buttons a:last-child:hover {
-    background: #9b45e8;
-    color: white;
-}
-
-
-/* TECHNOLOGY VISUAL */
-
-.hero-visual {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 350px;
-    background: radial-gradient(circle, #32104f 0%, #11111d 65%, transparent 75%);
-}
-
-.tech-circle {
-    width: 260px;
-    height: 260px;
-    border: 2px solid #bd65ff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: radial-gradient(circle, #351052, #11111d);
-    box-shadow: 0 0 35px #9b45e8;
-    position: relative;
-}
-
-.tech-circle::before {
-    content: "";
-    position: absolute;
-    width: 310px;
-    height: 100px;
-    border: 2px solid #bd65ff;
-    border-radius: 50%;
-    transform: rotate(-30deg);
-}
-
-.tech-circle span {
-    font-size: 75px;
-    font-weight: bold;
-    color: #bd65ff;
-    text-shadow: 0 0 20px #bd65ff;
-}
-
-.hero-visual > p {
-    color: #bd65ff;
-    letter-spacing: 5px;
-    margin-top: 35px;
-    font-size: 13px;
-}
-
-
-/* MOBILE HERO */
-
-@media (max-width: 700px) {
-
-    .hero {
-        grid-template-columns: 1fr;
-        text-align: center;
-        padding: 60px 20px;
-        gap: 20px;
-    }
-
-    .hero h1 {
-        font-size: 34px;
+        margin: auto;
     }
 
     .hero-buttons {
         justify-content: center;
     }
 
-    .hero-visual {
-        min-height: 280px;
-    }
-
     .tech-circle {
-        width: 190px;
-        height: 190px;
-    }
-
-    .tech-circle::before {
         width: 230px;
-        height: 75px;
     }
 
     .tech-circle span {
-        font-size: 55px;
+        font-size: 95px;
     }
-
-}
-/* NOVA PROJECTS UPGRADE */
-
-.section-label {
-    color: #bd65ff;
-    font-size: 13px;
-    font-weight: bold;
-    letter-spacing: 4px;
-    margin-bottom: 12px;
-}
-
-.projects h2 {
-    font-size: 38px;
-    margin-bottom: 15px;
-}
-
-.projects > p:not(.section-label) {
-    color: #c4c4d0;
-    margin-bottom: 40px;
-}
-
-.project-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-}
-
-.project-card {
-    background: linear-gradient(145deg, #191326, #0e0d18);
-    border: 1px solid #30203f;
-    border-radius: 16px;
-    padding: 30px;
-    text-align: left;
-    transition: 0.3s ease;
-}
-
-.project-card:hover {
-    transform: translateY(-8px);
-    border-color: #bd65ff;
-    box-shadow: 0 10px 30px #9b45e822;
-}
-
-.project-icon {
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #351052;
-    color: #bd65ff;
-    border-radius: 12px;
-    font-weight: bold;
-    margin-bottom: 25px;
-}
-
-.project-card h3 {
-    font-size: 21px;
-    margin-bottom: 12px;
-}
-
-.project-card p {
-    color: #b5b2c0;
-    line-height: 1.7;
-    margin-bottom: 25px;
-}
-
-.project-card span {
-    display: inline-block;
-    color: #bd65ff;
-    background: #351052;
-    padding: 7px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-}
-
-
-/* MOBILE PROJECTS */
-
-@media (max-width: 700px) {
-
-    .projects h2 {
-        font-size: 30px;
-    }
-
-    .project-container {
-        grid-template-columns: 1fr;
-    }
-
-    .project-card {
-        padding: 25px;
-    }
-
-}
-/* NOVA ABOUT UPGRADE */
-
-.about {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    gap: 50px;
-    text-align: left;
-}
-
-.about-content h2 {
-    font-size: 38px;
-    margin-bottom: 20px;
-    line-height: 1.2;
-}
-
-.about-content > p:not(.section-label) {
-    color: #c4c4d0;
-    line-height: 1.8;
-    margin-bottom: 15px;
-}
-
-.about-values {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.value-card {
-    background: linear-gradient(145deg, #191326, #0e0d18);
-    border: 1px solid #30203f;
-    border-left: 3px solid #bd65ff;
-    border-radius: 12px;
-    padding: 25px;
-    transition: 0.3s ease;
-}
-
-.value-card:hover {
-    transform: translateX(6px);
-    border-color: #bd65ff;
-}
-
-.value-card h3 {
-    color: #bd65ff;
-    margin-bottom: 12px;
-    font-size: 21px;
-}
-
-.value-card p {
-    color: #c4c4d0;
-    line-height: 1.7;
-}
-
-
-/* MOBILE ABOUT */
-
-@media (max-width: 700px) {
 
     .about {
         grid-template-columns: 1fr;
-        gap: 30px;
-        text-align: left;
+        padding: 70px 18px;
     }
 
     .about-content h2 {
         font-size: 30px;
     }
 
-}
-/* NOVA SOLUTIONS UPGRADE */
-
-.solutions > h2 {
-    font-size: 38px;
-    margin-bottom: 15px;
-}
-
-.solutions > p:not(.section-label) {
-    color: #c4c4d0;
-    margin-bottom: 40px;
-}
-
-.solution-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-}
-
-.solution-card {
-    background: linear-gradient(145deg, #191326, #0e0d18);
-    border: 1px solid #30203f;
-    border-radius: 16px;
-    padding: 30px;
-    text-align: left;
-    transition: 0.3s ease;
-}
-
-.solution-card:hover {
-    transform: translateY(-8px);
-    border-color: #bd65ff;
-    box-shadow: 0 10px 30px #9b45e822;
-}
-
-.solution-number {
-    display: inline-block;
-    color: #bd65ff;
-    font-size: 14px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    margin-bottom: 25px;
-}
-
-.solution-card h3 {
-    font-size: 21px;
-    margin-bottom: 12px;
-}
-
-.solution-card p {
-    color: #b5b2c0;
-    line-height: 1.7;
-}
-
-
-/* MOBILE SOLUTIONS */
-
-@media (max-width: 700px) {
-
-    .solutions > h2 {
-        font-size: 30px;
+    .products,
+    .projects,
+    .solutions,
+    .technology,
+    .planner,
+    .focus-timer,
+    .contact {
+        padding: 70px 18px;
     }
 
-    .solution-container {
+    .section-heading h2 {
+        font-size: 29px;
+    }
+
+    .products-grid,
+    .projects-grid,
+    .solutions-grid,
+    .technology-grid {
         grid-template-columns: 1fr;
     }
 
-}
-/* NOVA TECHNOLOGY UPGRADE */
-
-.technology > h2 {
-    font-size: 38px;
-    margin-bottom: 15px;
-}
-
-.technology > p:not(.section-label) {
-    color: #c4c4d0;
-    line-height: 1.7;
-}
-
-.technology-list {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-top: 35px;
-}
-
-.technology-list span {
-    background: linear-gradient(145deg, #251438, #151020);
-    border: 1px solid #7540a0;
-    color: #d9b5ff;
-    padding: 14px 24px;
-    border-radius: 30px;
-    font-size: 14px;
-    font-weight: bold;
-    transition: 0.3s ease;
-}
-
-.technology-list span:hover {
-    background: #9b45e8;
-    color: white;
-    transform: translateY(-5px);
-    box-shadow: 0 5px 20px #9b45e855;
-}
-
-.technology .technology-note {
-    color: #bd65ff;
-    font-size: 13px;
-    letter-spacing: 2px;
-    margin-top: 35px;
-}
-
-
-/* MOBILE TECHNOLOGY */
-
-@media (max-width: 700px) {
-
-    .technology > h2 {
-        font-size: 30px;
-    }
-
-    .technology-list {
-        gap: 10px;
-    }
-
-    .technology-list span {
-        padding: 12px 18px;
-        font-size: 13px;
-    }
-
-}
-
-/* NOVA CONTACT UPGRADE */
-
-.contact > h2 {
-    font-size: 38px;
-    margin-bottom: 15px;
-}
-
-.contact .contact-intro {
-    color: #c4c4d0;
-    line-height: 1.7;
-    margin-bottom: 35px;
-}
-
-.contact form {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 35px;
-    background: linear-gradient(145deg, #191326, #0e0d18);
-    border: 1px solid #30203f;
-    border-radius: 16px;
-    text-align: left;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 22px;
-}
-
-.form-group label {
-    color: #d9b5ff;
-    margin-bottom: 10px;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.contact input,
-.contact textarea {
-    width: 100%;
-    padding: 14px;
-    background: #0b0912;
-    border: 1px solid #453052;
-    border-radius: 8px;
-    color: white;
-    font-family: Arial, sans-serif;
-    font-size: 15px;
-    outline: none;
-}
-
-.contact input:focus,
-.contact textarea:focus {
-    border-color: #bd65ff;
-    box-shadow: 0 0 10px #9b45e833;
-}
-
-.contact textarea {
-    min-height: 140px;
-    resize: vertical;
-}
-
-.contact form button {
-    width: 100%;
-    padding: 15px;
-    background: #9b45e8;
-    border: none;
-    border-radius: 8px;
-    color: white;
-    font-size: 15px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s ease;
-}
-
-.contact form button:hover {
-    background: #bd65ff;
-    transform: translateY(-3px);
-}
-
-
-/* MOBILE CONTACT */
-
-@media (max-width: 700px) {
-
-    .contact > h2 {
-        font-size: 30px;
-    }
-
-    .contact form {
-        padding: 22px;
-    }
-
-}
-/* NOVA FOOTER UPGRADE */
-
-footer {
-    padding: 50px 7% 25px;
-    background: #06050b;
-    border-top: 1px solid #30203f;
-    text-align: left;
-}
-
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 30px;
-    flex-wrap: wrap;
-    padding-bottom: 35px;
-}
-
-.footer-brand h2 {
-    color: #bd65ff;
-    font-size: 32px;
-    letter-spacing: 3px;
-}
-
-.footer-brand h2 span {
-    color: white;
-}
-
-.footer-brand p {
-    color: #aaa3b5;
-    margin-top: 8px;
-}
-
-.footer-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 22px;
-}
-
-.footer-links a {
-    color: #c4c4d0;
-    text-decoration: none;
-    font-size: 14px;
-    transition: 0.3s ease;
-}
-
-.footer-links a:hover {
-    color: #bd65ff;
-}
-
-.footer-bottom {
-    border-top: 1px solid #30203f;
-    padding-top: 22px;
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
-.footer-bottom p {
-    color: #777181;
-    font-size: 12px;
-    line-height: 1.6;
-}
-
-
-/* MOBILE FOOTER */
-
-@media (max-width: 700px) {
-
-    footer {
-        padding: 40px 20px 20px;
-    }
-
-    .footer-content {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .footer-links {
-        gap: 15px;
-    }
-
-    .footer-bottom {
-        flex-direction: column;
-    }
-
-}
-/* NOVA QUICK PLANNER */
-
-.planner {
-    padding: 80px 10%;
-    text-align: center;
-}
-
-.planner > p:not(.section-label) {
-    max-width: 600px;
-    margin: 15px auto 35px;
-    color: #b9b0c5;
-    line-height: 1.7;
-}
-
-.planner-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    max-width: 950px;
-    margin: 40px auto 0;
-    text-align: left;
-}
-
-#task-form,
-.task-list-container {
-    padding: 30px;
-    background: #171020;
-    border: 1px solid #392447;
-    border-radius: 12px;
-}
-
-#task-form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-#task-form label {
-    color: #e5d9ed;
-    font-size: 14px;
-}
-
-#task-form input,
-#task-form select {
-    width: 100%;
-    padding: 13px;
-    background: #24172e;
-    color: white;
-    border: 1px solid #493357;
-    border-radius: 6px;
-    outline: none;
-}
-
-#task-form button {
-    padding: 13px;
-    margin-top: 10px;
-    background: #bd65ff;
-    color: #160c20;
-    border: none;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.task-list-container h3 {
-    color: white;
-    margin-bottom: 20px;
-}
-
-#task-list {
-    list-style: none;
-    padding: 0;
-}
-
-#empty-message {
-    color: #a99bb4;
-    font-size: 14px;
-}
-
-@media (max-width: 700px) {
-    .planner-container {
+    #task-form {
         grid-template-columns: 1fr;
     }
 
-    .planner {
-        padding: 60px 7%;
+    #task-form button {
+        width: 100%;
     }
-}
-/* PLANNER TASK BUTTONS */
 
-#task-list li {
-    padding: 18px;
-    margin-bottom: 15px;
-    background: #24172e;
-    border: 1px solid #493357;
-    border-radius: 8px;
-    color: white;
-}
+    .timer-card {
+        padding: 25px 15px;
+    }
 
-#task-list li span {
-    font-size: 15px;
-    font-weight: bold;
-}
+    #timer-display {
+        font-size: 52px;
+    }
 
-#task-list li small {
-    display: inline-block;
-    margin: 8px 0;
-    color: #bd65ff;
-}
+    .timer-modes button {
+        font-size: 12px;
+        padding: 9px 10px;
+    }
 
-#task-list li button {
-    padding: 8px 12px;
-    margin: 5px 5px 0 0;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-}
+    .timer-controls button {
+        padding: 11px 15px;
+    }
 
-#task-list li button:first-of-type {
-    background: #bd65ff;
-    color: #160c20;
-}
-
-#task-list li button:last-of-type {
-    background: #392447;
-    color: #ffffff;
-}
-
-#task-list li button:disabled {
-    opacity: 0.6;
-    cursor: default;
-}
-/* PLANNER TASK COUNTER */
-
-#task-counter {
-    display: inline-block;
-    padding: 9px 15px;
-    margin-bottom: 20px;
-    background: #24172e;
-    border: 1px solid #493357;
-    border-radius: 20px;
-    color: #bd65ff;
-    font-size: 13px;
-    font-weight: bold;
-}
-/* CLEAR ALL TASKS BUTTON */
-
-#clear-tasks {
-    padding: 9px 15px;
-    margin-bottom: 20px;
-    background: transparent;
-    color: #bd65ff;
-    border: 1px solid #bd65ff;
-    border-radius: 6px;
-    font-size: 13px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s ease;
-}
-
-#clear-tasks:hover {
-    background: #bd65ff;
-    color: #160c20;
-}
-/* NOVA FOCUS TIMER */
-
-#focus-timer {
-    padding: 80px 8%;
-    background: #10091a;
-    text-align: center;
-}
-
-.timer-container {
-    max-width: 450px;
-    margin: 40px auto 0;
-    padding: 35px 25px;
-    background: #1c1029;
-    border: 1px solid #572c78;
-    border-radius: 18px;
-}
-
-.timer-container h3 {
-    color: #ffffff;
-    margin-bottom: 25px;
-}
-
-#timer-display {
-    font-size: 4rem;
-    font-weight: bold;
-    color: #bd65ff;
-    margin: 25px 0;
-}
-
-.timer-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-
-.timer-buttons button {
-    padding: 12px 22px;
-    border: none;
-    border-radius: 8px;
-    background: #8e44cc;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.timer-buttons button:hover {
-    background: #bd65ff;
-}
-
-#timer-status {
-    color: #c9b6d8;
-    margin-top: 22px;
-}
-/* FOCUS TIMER SETTINGS */
-
-.timer-settings {
-    margin: 25px 0;
-}
-
-.timer-settings label {
-    display: block;
-    color: #ffffff;
-    margin-bottom: 10px;
-}
-
-.timer-settings input {
-    width: 100px;
-    padding: 10px;
-    border: 1px solid #8e44cc;
-    border-radius: 8px;
-    background: #10091a;
-    color: white;
-    text-align: center;
-    font-size: 16px;
-}
-
-.timer-settings button {
-    padding: 10px 16px;
-    margin-left: 8px;
-    border: none;
-    border-radius: 8px;
-    background: #8e44cc;
-    color: white;
-    cursor: pointer;
-}
-/* NOVA TIMER MODES */
-
-.timer-modes {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin: 20px 0;
-}
-
-.timer-modes button {
-    padding: 10px 14px;
-    border: 1px solid #8e44cc;
-    border-radius: 8px;
-    background: transparent;
-    color: white;
-    cursor: pointer;
-}
-
-.timer-modes button:hover,
-.timer-modes button.active {
-    background: #8e44cc;
 }

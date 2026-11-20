@@ -1146,3 +1146,112 @@ footer {
     background: #bd65ff;
     color: #160c20;
 }
+/* NOVA FOCUS TIMER */
+
+#focus-timer {
+    padding: 80px 8%;
+    background: #10091a;
+    text-align: center;
+}
+
+.timer-container {
+    max-width: 450px;
+    margin: 40px auto 0;
+    padding: 35px 25px;
+    background: #1c1029;
+    border: 1px solid #572c78;
+    border-radius: 18px;
+}
+
+.timer-container h3 {
+    color: #ffffff;
+    margin-bottom: 25px;
+}
+
+#timer-display {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #bd65ff;
+    margin: 25px 0;
+}
+
+.timer-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.timer-buttons button {
+    padding: 12px 22px;
+    border: none;
+    border-radius: 8px;
+    background: #8e44cc;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.timer-buttons button:hover {
+    background: #bd65ff;
+}
+
+#timer-status {
+    color: #c9b6d8;
+    margin-top: 22px;
+}
+/* FOCUS TIMER SETTINGS */
+
+.timer-settings {
+    margin: 25px 0;
+}
+
+.timer-settings label {
+    display: block;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.timer-settings input {
+    width: 100px;
+    padding: 10px;
+    border: 1px solid #8e44cc;
+    border-radius: 8px;
+    background: #10091a;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+}
+
+.timer-settings button {
+    padding: 10px 16px;
+    margin-left: 8px;
+    border: none;
+    border-radius: 8px;
+    background: #8e44cc;
+    color: white;
+    cursor: pointer;
+}
+/* NOVA TIMER MODES */
+
+.timer-modes {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.timer-modes button {
+    padding: 10px 14px;
+    border: 1px solid #8e44cc;
+    border-radius: 8px;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+}
+
+.timer-modes button:hover,
+.timer-modes button.active {
+    background: #8e44cc;
+}

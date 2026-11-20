@@ -1,0 +1,983 @@
+
+/* GENERAL SETTINGS */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #080810;
+    color: white;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+
+/* NAVIGATION */
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 7%;
+    background-color: #11111d;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav h2 {
+    color: #bd65ff;
+    font-size: 28px;
+    letter-spacing: 3px;
+}
+
+nav div {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #bd65ff;
+}
+
+
+/* HERO SECTION */
+
+.hero {
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #11111d, #211034);
+}
+
+.hero p:first-child {
+    color: #bd65ff;
+    letter-spacing: 4px;
+    font-weight: bold;
+}
+
+.hero h1 {
+    font-size: 55px;
+    max-width: 900px;
+    line-height: 1.2;
+    margin: 20px 0;
+}
+
+.hero p {
+    max-width: 650px;
+    color: #c4c4d0;
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+.hero a {
+    display: inline-block;
+    padding: 12px 25px;
+    margin: 8px;
+    border-radius: 8px;
+    background-color: #9b45e8;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.hero a:hover {
+    background-color: white;
+    color: #9b45e8;
+}
+
+
+/* GENERAL SECTION SETTINGS */
+
+section:not(.hero) {
+    padding: 80px 7%;
+}
+
+section h2 {
+    text-align: center;
+    font-size: 35px;
+    color: #bd65ff;
+    margin-bottom: 25px;
+}
+
+section > p {
+    text-align: center;
+    color: #c4c4d0;
+    max-width: 750px;
+    margin: 0 auto 25px;
+}
+
+
+/* ABOUT SECTION */
+
+.about {
+    background-color: #0d0d18;
+    text-align: center;
+}
+
+.about h3 {
+    color: #bd65ff;
+    margin: 25px 0 10px;
+}
+
+.about p {
+    max-width: 750px;
+    margin: 0 auto 15px;
+    color: #c4c4d0;
+}
+
+
+/* PROJECTS SECTION */
+
+.projects {
+    background-color: #11111d;
+}
+
+.project-container {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin-top: 35px;
+}
+
+.project-card {
+    background-color: #1b1b2b;
+    padding: 30px;
+    border-radius: 15px;
+    flex: 1 1 250px;
+    max-width: 350px;
+    border: 1px solid #343044;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+}
+
+.project-card h3 {
+    color: #bd65ff;
+    margin-bottom: 15px;
+}
+
+.project-card p {
+    color: #c4c4d0;
+    margin-bottom: 15px;
+}
+
+.project-card span {
+    color: #bd65ff;
+    font-size: 14px;
+}
+
+
+/* SOLUTIONS SECTION */
+
+.solutions {
+    background-color: #0d0d18;
+}
+
+.solution-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-top: 35px;
+}
+
+.solution-card {
+    flex: 1 1 250px;
+    max-width: 350px;
+    padding: 30px;
+    background-color: #1b1b2b;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.solution-card h3 {
+    color: #bd65ff;
+    margin-bottom: 15px;
+}
+
+.solution-card p {
+    color: #c4c4d0;
+}
+
+
+/* TECHNOLOGY SECTION */
+
+.technology {
+    background-color: #11111d;
+    text-align: center;
+}
+
+.technology-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.technology-list span {
+    padding: 12px 22px;
+    background-color: #211034;
+    border: 1px solid #9b45e8;
+    border-radius: 25px;
+}
+
+
+/* CONTACT SECTION */
+
+.contact {
+    background-color: #0d0d18;
+}
+
+.contact form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 450px;
+    margin: 30px auto 0;
+}
+
+.contact label {
+    color: white;
+    font-weight: bold;
+}
+
+.contact input,
+.contact textarea {
+    padding: 14px;
+    border: 2px solid #343044;
+    border-radius: 8px;
+    background-color: #1b1b2b;
+    color: white;
+    font-size: 16px;
+}
+
+.contact input:focus,
+.contact textarea:focus {
+    outline: none;
+    border-color: #bd65ff;
+}
+
+.contact textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+.contact button {
+    padding: 14px;
+    background-color: #9b45e8;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.contact button:hover {
+    background-color: white;
+    color: #9b45e8;
+}
+
+
+/* FOOTER */
+
+footer {
+    background-color: #11111d;
+    text-align: center;
+    padding: 40px 20px;
+    color: #9999aa;
+}
+
+footer h2 {
+    color: #bd65ff;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+}
+
+
+/* MOBILE RESPONSIVENESS */
+
+@media (max-width: 700px) {
+
+    nav {
+        flex-direction: column;
+        gap: 15px;
+        padding: 18px;
+    }
+
+    nav div {
+        justify-content: center;
+        gap: 15px;
+    }
+
+    nav a {
+        font-size: 14px;
+    }
+
+    .hero {
+        min-height: 70vh;
+        padding: 60px 18px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    section:not(.hero) {
+        padding: 55px 20px;
+    }
+
+    section h2 {
+        font-size: 28px;
+    }
+
+    .project-card,
+    .solution-card {
+        max-width: 100%;
+    }
+
+}
+
+
+/* NOVA HERO UPGRADE */
+
+.hero {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: 40px;
+    text-align: left;
+    padding: 80px 7%;
+    min-height: 85vh;
+}
+
+.hero-content {
+    max-width: 650px;
+}
+
+.hero-label {
+    color: #bd65ff !important;
+    font-weight: bold;
+    letter-spacing: 4px;
+    margin-bottom: 15px !important;
+}
+
+.hero h1 {
+    font-size: 52px;
+    line-height: 1.2;
+    margin: 15px 0 20px;
+}
+
+.hero-content > p:not(.hero-label) {
+    color: #c4c4d0;
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.hero-buttons a {
+    margin: 0;
+}
+
+.hero-buttons a:last-child {
+    background: transparent;
+    border: 1px solid #bd65ff;
+}
+
+.hero-buttons a:last-child:hover {
+    background: #9b45e8;
+    color: white;
+}
+
+
+/* TECHNOLOGY VISUAL */
+
+.hero-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 350px;
+    background: radial-gradient(circle, #32104f 0%, #11111d 65%, transparent 75%);
+}
+
+.tech-circle {
+    width: 260px;
+    height: 260px;
+    border: 2px solid #bd65ff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle, #351052, #11111d);
+    box-shadow: 0 0 35px #9b45e8;
+    position: relative;
+}
+
+.tech-circle::before {
+    content: "";
+    position: absolute;
+    width: 310px;
+    height: 100px;
+    border: 2px solid #bd65ff;
+    border-radius: 50%;
+    transform: rotate(-30deg);
+}
+
+.tech-circle span {
+    font-size: 75px;
+    font-weight: bold;
+    color: #bd65ff;
+    text-shadow: 0 0 20px #bd65ff;
+}
+
+.hero-visual > p {
+    color: #bd65ff;
+    letter-spacing: 5px;
+    margin-top: 35px;
+    font-size: 13px;
+}
+
+
+/* MOBILE HERO */
+
+@media (max-width: 700px) {
+
+    .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 60px 20px;
+        gap: 20px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-visual {
+        min-height: 280px;
+    }
+
+    .tech-circle {
+        width: 190px;
+        height: 190px;
+    }
+
+    .tech-circle::before {
+        width: 230px;
+        height: 75px;
+    }
+
+    .tech-circle span {
+        font-size: 55px;
+    }
+
+}
+/* NOVA PROJECTS UPGRADE */
+
+.section-label {
+    color: #bd65ff;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    margin-bottom: 12px;
+}
+
+.projects h2 {
+    font-size: 38px;
+    margin-bottom: 15px;
+}
+
+.projects > p:not(.section-label) {
+    color: #c4c4d0;
+    margin-bottom: 40px;
+}
+
+.project-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.project-card {
+    background: linear-gradient(145deg, #191326, #0e0d18);
+    border: 1px solid #30203f;
+    border-radius: 16px;
+    padding: 30px;
+    text-align: left;
+    transition: 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    border-color: #bd65ff;
+    box-shadow: 0 10px 30px #9b45e822;
+}
+
+.project-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #351052;
+    color: #bd65ff;
+    border-radius: 12px;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.project-card h3 {
+    font-size: 21px;
+    margin-bottom: 12px;
+}
+
+.project-card p {
+    color: #b5b2c0;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.project-card span {
+    display: inline-block;
+    color: #bd65ff;
+    background: #351052;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+
+/* MOBILE PROJECTS */
+
+@media (max-width: 700px) {
+
+    .projects h2 {
+        font-size: 30px;
+    }
+
+    .project-container {
+        grid-template-columns: 1fr;
+    }
+
+    .project-card {
+        padding: 25px;
+    }
+
+}
+/* NOVA ABOUT UPGRADE */
+
+.about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 50px;
+    text-align: left;
+}
+
+.about-content h2 {
+    font-size: 38px;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.about-content > p:not(.section-label) {
+    color: #c4c4d0;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+.about-values {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.value-card {
+    background: linear-gradient(145deg, #191326, #0e0d18);
+    border: 1px solid #30203f;
+    border-left: 3px solid #bd65ff;
+    border-radius: 12px;
+    padding: 25px;
+    transition: 0.3s ease;
+}
+
+.value-card:hover {
+    transform: translateX(6px);
+    border-color: #bd65ff;
+}
+
+.value-card h3 {
+    color: #bd65ff;
+    margin-bottom: 12px;
+    font-size: 21px;
+}
+
+.value-card p {
+    color: #c4c4d0;
+    line-height: 1.7;
+}
+
+
+/* MOBILE ABOUT */
+
+@media (max-width: 700px) {
+
+    .about {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: left;
+    }
+
+    .about-content h2 {
+        font-size: 30px;
+    }
+
+}
+/* NOVA SOLUTIONS UPGRADE */
+
+.solutions > h2 {
+    font-size: 38px;
+    margin-bottom: 15px;
+}
+
+.solutions > p:not(.section-label) {
+    color: #c4c4d0;
+    margin-bottom: 40px;
+}
+
+.solution-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.solution-card {
+    background: linear-gradient(145deg, #191326, #0e0d18);
+    border: 1px solid #30203f;
+    border-radius: 16px;
+    padding: 30px;
+    text-align: left;
+    transition: 0.3s ease;
+}
+
+.solution-card:hover {
+    transform: translateY(-8px);
+    border-color: #bd65ff;
+    box-shadow: 0 10px 30px #9b45e822;
+}
+
+.solution-number {
+    display: inline-block;
+    color: #bd65ff;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+}
+
+.solution-card h3 {
+    font-size: 21px;
+    margin-bottom: 12px;
+}
+
+.solution-card p {
+    color: #b5b2c0;
+    line-height: 1.7;
+}
+
+
+/* MOBILE SOLUTIONS */
+
+@media (max-width: 700px) {
+
+    .solutions > h2 {
+        font-size: 30px;
+    }
+
+    .solution-container {
+        grid-template-columns: 1fr;
+    }
+
+}
+/* NOVA TECHNOLOGY UPGRADE */
+
+.technology > h2 {
+    font-size: 38px;
+    margin-bottom: 15px;
+}
+
+.technology > p:not(.section-label) {
+    color: #c4c4d0;
+    line-height: 1.7;
+}
+
+.technology-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 35px;
+}
+
+.technology-list span {
+    background: linear-gradient(145deg, #251438, #151020);
+    border: 1px solid #7540a0;
+    color: #d9b5ff;
+    padding: 14px 24px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+
+.technology-list span:hover {
+    background: #9b45e8;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px #9b45e855;
+}
+
+.technology .technology-note {
+    color: #bd65ff;
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin-top: 35px;
+}
+
+
+/* MOBILE TECHNOLOGY */
+
+@media (max-width: 700px) {
+
+    .technology > h2 {
+        font-size: 30px;
+    }
+
+    .technology-list {
+        gap: 10px;
+    }
+
+    .technology-list span {
+        padding: 12px 18px;
+        font-size: 13px;
+    }
+
+}
+
+/* NOVA CONTACT UPGRADE */
+
+.contact > h2 {
+    font-size: 38px;
+    margin-bottom: 15px;
+}
+
+.contact .contact-intro {
+    color: #c4c4d0;
+    line-height: 1.7;
+    margin-bottom: 35px;
+}
+
+.contact form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 35px;
+    background: linear-gradient(145deg, #191326, #0e0d18);
+    border: 1px solid #30203f;
+    border-radius: 16px;
+    text-align: left;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 22px;
+}
+
+.form-group label {
+    color: #d9b5ff;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.contact input,
+.contact textarea {
+    width: 100%;
+    padding: 14px;
+    background: #0b0912;
+    border: 1px solid #453052;
+    border-radius: 8px;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    outline: none;
+}
+
+.contact input:focus,
+.contact textarea:focus {
+    border-color: #bd65ff;
+    box-shadow: 0 0 10px #9b45e833;
+}
+
+.contact textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+.contact form button {
+    width: 100%;
+    padding: 15px;
+    background: #9b45e8;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.contact form button:hover {
+    background: #bd65ff;
+    transform: translateY(-3px);
+}
+
+
+/* MOBILE CONTACT */
+
+@media (max-width: 700px) {
+
+    .contact > h2 {
+        font-size: 30px;
+    }
+
+    .contact form {
+        padding: 22px;
+    }
+
+}
+/* NOVA FOOTER UPGRADE */
+
+footer {
+    padding: 50px 7% 25px;
+    background: #06050b;
+    border-top: 1px solid #30203f;
+    text-align: left;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    padding-bottom: 35px;
+}
+
+.footer-brand h2 {
+    color: #bd65ff;
+    font-size: 32px;
+    letter-spacing: 3px;
+}
+
+.footer-brand h2 span {
+    color: white;
+}
+
+.footer-brand p {
+    color: #aaa3b5;
+    margin-top: 8px;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+}
+
+.footer-links a {
+    color: #c4c4d0;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #bd65ff;
+}
+
+.footer-bottom {
+    border-top: 1px solid #30203f;
+    padding-top: 22px;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.footer-bottom p {
+    color: #777181;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+
+/* MOBILE FOOTER */
+
+@media (max-width: 700px) {
+
+    footer {
+        padding: 40px 20px 20px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .footer-links {
+        gap: 15px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+    }
+
+}
